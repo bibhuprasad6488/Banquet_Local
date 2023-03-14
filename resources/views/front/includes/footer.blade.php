@@ -1,12 +1,12 @@
 <!--Modal-->
 
 <!-- Scroll Up -->
-<div id="back-top">
+{{-- <div id="back-top">
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-</div>
+</div> --}}
 
 <!-- JS here -->
-
+<script src="https://kit.fontawesome.com/1640028a46.js" crossorigin="anonymous"></script>
 <script src="{{ asset('front/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 <!-- Jquery, Popper, Bootstrap -->
 <script src="{{ asset('front/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>

@@ -1087,8 +1087,12 @@ h6 {
 
     #venues2 {
         /* background-color: #dc3545; */
-        margin-top: 122px !important;
-        height: 245px !important;
+        margin-top: 90px !important;
+        height: 244px !important;
+    }
+
+    .check_form {
+        margin-left: 34px !important;
     }
 
     .banner {
