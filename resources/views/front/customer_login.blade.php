@@ -143,7 +143,7 @@
                                     <div class="d-flex justify-content-center mt-3 login_container">
                                         <button type="submit" name="Login" class="buttonn login_btn">Log
                                             In</button>
-                                            <span id="submit"></span>
+                                        <span id="submit"></span>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                         if (data.text == "ok") {
                             let starPhoneNumber = data.mobile.replace(/\d(?=\d{4})/g, "*");
                             swal({
-                                text: 'Otp Sent to '+ starPhoneNumber +' Number',
+                                text: 'Otp Sent to ' + starPhoneNumber + ' Number',
                                 icon: "success",
                                 button: "Okay",
                             }).then(function() {

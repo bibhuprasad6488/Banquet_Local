@@ -1,7 +1,6 @@
 @extends('front.front_layout')
 @section('title', 'Cart')
 @section('content')
-
     <section class="p-top">
         <div class="">
             <div class="slider-height2 d-flex align-items-center">

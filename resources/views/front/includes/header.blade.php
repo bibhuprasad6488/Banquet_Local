@@ -46,7 +46,7 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style>
         body::-webkit-scrollbar {
@@ -132,7 +132,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                   <a href="/banquet/cart">
+                                                    <a href="/banquet/cart">
                                                         <i class="fa fa-shopping-cart cart" aria-hidden="true"></i>
                                                         {{-- count(session()->get('cart'), COUNT_RECURSIVE); --}}
 

@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        @section('title', 'Customers Login')
+        @section('title', 'Customers Otp')
     </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -132,20 +132,20 @@
         @if (Session::get('error'))
             <script>
                 const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'Please Enter a valid otp.'
-                    });
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Please Enter a valid otp.'
+                });
             </script>
         @endif
     </main>

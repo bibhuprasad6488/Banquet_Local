@@ -56,7 +56,7 @@
     <main style="background-color:#ff5b61;" class="h-100">
         <!--? slider Area Start-->
 
-        
+
         <div class="container  h-100">
             <div class="row  justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -80,9 +80,8 @@
                                     <strong>{{ $message }}</strong>
                                 </div>
                             @endif --}}
-                            <form action="" method="" autocomplete="off"
-                                enctype="multipart/form-data">
-                                
+                            <form action="" method="" autocomplete="off" enctype="multipart/form-data">
+
                                 <h2 class="fw-bold text-uppercase text-center text-white">Welcome</h2>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -98,26 +97,27 @@
                                                 onKeyPress="if(this.value.length==10) return false;"
                                                 placeholder="Please Enter Number" required>
                                         </div>
-
-
-                                      <div class="col-md-12">
-                                        <label class="">Name</label>
-                                        <div class="input-group  mb-4">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-mobile"></i>
-                                                    </i>
-                                                </span>
+                                        <div class="col-md-12">
+                                            <label class="">Name</label>
+                                            <div class="input-group  mb-4">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-mobile"></i>
+                                                        </i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" name="name" id="name"
+                                                    class="form-control input_user" placeholder="Please Enter name"
+                                                    required>
                                             </div>
-                                    <input type="text" name="name" id="name" class="form-control input_user" placeholder="Please Enter name" required>      
-                                        </div>
 
 
 
-                                        <div class="d-flex justify-content-center mt-3 login_container">
-                                            <button type="submit" name="Login" class="buttonn login_btn">Log in</button>
+                                            <div class="d-flex justify-content-center mt-3 login_container">
+                                                <button type="submit" name="Login" class="buttonn login_btn">Log
+                                                    in</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </form>
 
                             <div class="text-center mt-2">
@@ -186,4 +186,3 @@
 </body>
 
 </html>
-

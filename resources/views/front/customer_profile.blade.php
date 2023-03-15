@@ -51,7 +51,6 @@
                             <div class="card card-b" style="height: 95% !important;">
                                 <div class="card-title text-dark">Booking History</div>
                                 <div class="card-body text-center " id="card-body" style="overflow-y: scroll;">
-
                                     <div class="container">
                                         <div class="row">
                                             @if (!empty($bookings))

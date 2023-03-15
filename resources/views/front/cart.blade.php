@@ -51,7 +51,7 @@
                                                                         @endif
                                                                     </div>
                                                                     <div class="col-md-6 text-right">
-                                                                        <a href="/banquet/{{ $val['slug']['venue_slug'] }}/{{ $val['slug']['package_slug'] }}/{{$val['slug']['searched_date']}}/{{ $val['cat_id'] }}/{{ $val['package_id'] }}"
+                                                                        <a href="/banquet/{{ $val['slug']['venue_slug'] }}/{{ $val['slug']['package_slug'] }}/{{ $val['slug']['searched_date'] }}/{{ $val['cat_id'] }}/{{ $val['package_id'] }}"
                                                                             class="button mx-2 button-large ">Edit Item</a>
                                                                     </div>
                                                                 </div>
@@ -134,7 +134,7 @@
                                                                 @endif
                                                             </div>
                                                             <div class="col-md-6 text-right">
-                                                                <a href="/banquet/{{ $val['slug']['venue_slug'] }}/{{ $val['slug']['package_slug'] }}/{{$val['slug']['searched_date']}}/{{ $val['cat_id'] }}/{{ $val['package_id'] }}"
+                                                                <a href="/banquet/{{ $val['slug']['venue_slug'] }}/{{ $val['slug']['package_slug'] }}/{{ $val['slug']['searched_date'] }}/{{ $val['cat_id'] }}/{{ $val['package_id'] }}"
                                                                     class="button mx-2 button-large ">Edit Item</a>
                                                             </div>
                                                             <div class="col-md-6">
@@ -194,17 +194,18 @@
                                                 <ul class="list-unstyled" id="list">
                                                     <li>Package Price = &#8377;
                                                         {{ number_format($others['package']->price ?? 0) }} /- </li>
-                                                    <li> Extra Items Price = &#8377; {{number_format($others['extra_all_items_price'] ?? 0)}} /-</li>
+                                                    <li> Extra Items Price = &#8377;
+                                                        {{ number_format($others['extra_all_items_price'] ?? 0) }} /-</li>
                                                 </ul>
                                                 <button id="open-modal-button" class="btn button-small"
                                                     onclick="confirm_booking()">CONFIRM</button>
                                             </div>
                                             @php
                                                 $total = $others['package']->price + $others['extra_all_items_price'];
-
+                                                
                                             @endphp
                                             <span class="p-1 px-4 pb-4"> Total Amount = &#8377;
-                                                {{number_format($total)}} /-</span>
+                                                {{ number_format($total) }} /-</span>
                                         </div>
                                     </h3>
                                 </div>
@@ -213,11 +214,11 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" value="{{$others['customer']->id}}" name="customer_id" id="customer_id">
-            <input type="hidden" value="{{$others['venue_id']}}" name="venue_id" id="venue_id">
-            <input type="hidden" value="{{$others['searched_date']}}" name="searched_date" id="searched_date">
-            <input type="hidden" value="{{$others['package']->id}}" name="package_id" id="package_id">
-            <input type="hidden" value="{{$total}}" name="total_amount" id="total_amount">
+            <input type="hidden" value="{{ $others['customer']->id }}" name="customer_id" id="customer_id">
+            <input type="hidden" value="{{ $others['venue_id'] }}" name="venue_id" id="venue_id">
+            <input type="hidden" value="{{ $others['searched_date'] }}" name="searched_date" id="searched_date">
+            <input type="hidden" value="{{ $others['package']->id }}" name="package_id" id="package_id">
+            <input type="hidden" value="{{ $total }}" name="total_amount" id="total_amount">
         </div>
         {{-- @endif --}}
         <!-- Modal Popup  -->
@@ -259,8 +260,7 @@
 @endsection
 @push('script')
     <script>
-        function confirm_booking()
-        {
+        function confirm_booking() {
             var customer_id = $('#customer_id').val();
             var venue_id = $('#venue_id').val();
             var searched_date = $('#searched_date').val();
@@ -276,7 +276,7 @@
                     venue_id: venue_id,
                     searched_date: searched_date,
                     package_id: package_id,
-                    total_amount:total_amount
+                    total_amount: total_amount
                 },
                 success: function(data) {
                     console.log(data);
@@ -288,11 +288,8 @@
             });
         }
 
-        function thankYou()
-        {
+        function thankYou() {
             window.location = "/thank_you";
         }
-
     </script>
-
 @endpush
