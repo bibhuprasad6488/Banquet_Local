@@ -8,16 +8,19 @@
             color: #0d0d0d;
             font-weight: bold;
         }
+
         .gj-picker-md div[role="navigator"] {
             height: 42px;
             line-height: 42px;
             background-color: #ff5b61;
         }
+
         .gj-picker div[role="navigator"] div[role="period"] {
             font-weight: bold;
             font-size: 18px;
             background: #fff;
         }
+
         .gj-textbox-md {
             color: #9d9d9d;
             background-color: #f9f9f9;
@@ -104,12 +107,13 @@
                                     <div class="col-md-4 m-auto">
                                         <div class="form-div availability text-center">
                                             <h6 class="my-4">Check Availability</h6>
-                                            <form action="/banquet/all-venues" method="post"
-                                                enctype="multipart/form-data">
+                                            <form action="/banquet/all-venues" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="input-group">
                                                     <input type="text" name="date_check" id="validityCheck"
-                                                        class="form-control brdr " value="{{date('d-m-Y',strtotime($searched_date))}}" required autocomplete="off">
+                                                        class="form-control brdr "
+                                                        value="{{ date('d-m-Y', strtotime($searched_date)) }}" required
+                                                        autocomplete="off">
                                                     <div class="input-group-append">
                                                         <button type="submit" name="submit"
                                                             class="btn btnnn btn-sm btn-primary">Check</button>
@@ -147,7 +151,7 @@
                                 @if ($val->venue_type == 1)
                                     <div class="col-md-6">
                                         @if ($val->bookCnt < 1)
-                                            <a href="/banquet/venue/{{ $val->slug }}/{{$searched_date}}">
+                                            <a href="/banquet/venue/{{ $val->slug }}/{{ $searched_date }}">
                                         @endif
                                         <div class="gallery-box">
                                             <div class="single-gallery">
@@ -190,33 +194,33 @@
                                 @if ($val->venue_type == 2)
                                     <div class="col-md-6">
                                         @if ($val->bookCnt < 1)
-                                            <a href="/banquet/venue/{{ $val->slug }}/{{$searched_date}}">
+                                            <a href="/banquet/venue/{{ $val->slug }}/{{ $searched_date }}">
                                         @endif
-                                            <div class="gallery-box">
-                                                <div class="single-gallery">
-                                                    <div class="gallery-img big-img"
-                                                        style="background-image:url('/storage/images/venues/{{ $val->venueimage[0]->image ?? '' }}') ; background-position: center; background-repeat: no-repeat; background-size:cover ; ">
-                                                        @if ($val->bookCnt > 0)
+                                        <div class="gallery-box">
+                                            <div class="single-gallery">
+                                                <div class="gallery-img big-img"
+                                                    style="background-image:url('/storage/images/venues/{{ $val->venueimage[0]->image ?? '' }}') ; background-position: center; background-repeat: no-repeat; background-size:cover ; ">
+                                                    @if ($val->bookCnt > 0)
                                                         <h5>
                                                             <span class="badge badge-danger badge-sm book1">BOOKED</span>
                                                         </h5>
                                                     @endif
-                                                    </div>
-                                                    <h5>
-                                                        {{ $val->venue_name }}
-                                                        <span class="badge badge-danger badge-sm"><i class="fa fa-star-o"
-                                                                aria-hidden="true"></i> 4.3
-                                                        </span>
-                                                    </h5>
-                                                    @if (!empty($val->custom_fields))
-                                                        <p>{{ $val->custom_fields['setting'] ?? '' }}
-                                                            seating | {{ $val->custom_fields['floating'] ?? '' }}
-                                                            Floating
-                                                        </p>
-                                                    @endif
                                                 </div>
+                                                <h5>
+                                                    {{ $val->venue_name }}
+                                                    <span class="badge badge-danger badge-sm"><i class="fa fa-star-o"
+                                                            aria-hidden="true"></i> 4.3
+                                                    </span>
+                                                </h5>
+                                                @if (!empty($val->custom_fields))
+                                                    <p>{{ $val->custom_fields['setting'] ?? '' }}
+                                                        seating | {{ $val->custom_fields['floating'] ?? '' }}
+                                                        Floating
+                                                    </p>
+                                                @endif
                                             </div>
-                                            @if ($val->bookCnt < 1)
+                                        </div>
+                                        @if ($val->bookCnt < 1)
                                             </a>
                                         @endif
                                     </div>
@@ -237,14 +241,12 @@
     </main>
 @endsection
 @push('script')
-    
     <script>
-       $(document).ready(function(){
+        $(document).ready(function() {
             $("#validityCheck").datepicker({
                 format: 'dd-mm-yyyy', // format for date
                 minDate: 0
             });
         });
     </script>
-
 @endpush

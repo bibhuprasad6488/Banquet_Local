@@ -4,6 +4,7 @@
 
     <!doctype html>
     <html lang="en">
+
     <head>
         <title>
             Ms Chirpy Banquet Booking | Customers Profile
@@ -13,10 +14,10 @@
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/assets/img/favicon.ico') }}">
         @stack('style')
         <style>
-        #card-body::-webkit-scrollbar {
-            display: none;
-            /* overflow: hidden; */
-        }
+            #card-body::-webkit-scrollbar {
+                display: none;
+                /* overflow: hidden; */
+            }
         </style>
     </head>
 
@@ -31,8 +32,8 @@
                                 <div class="card-title text-dark">Profile</div>
                                 <div class="card-body text-center">
                                     <div class="img_card">
-                                        <img src="{{ asset('front/assets/img/profile.jpg') }}" height="100px"
-                                            width="100px" alt="Profile" class="img-fluid" alt="profile">
+                                        <img src="{{ asset('front/assets/img/profile.jpg') }}" height="100px" width="100px"
+                                            alt="Profile" class="img-fluid" alt="profile">
                                     </div>
                                     <h5 class="my-3">{{ $customer->customer_name }}</h5>
                                     <p class="text-muted mb-1">{{ $customer->mobile }}</p>
@@ -47,7 +48,7 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <div class="card card-b" style="height: 64% !important;">
+                            <div class="card card-b" style="height: 95% !important;">
                                 <div class="card-title text-dark">Booking History</div>
                                 <div class="card-body text-center " id="card-body" style="overflow-y: scroll;">
 
@@ -84,8 +85,7 @@
                                                 <div class="col-md-10 mb-4">
                                                     <div class="card" id="card2">
                                                         <div class="ribbon">#00123456</div>
-                                                        <img src="{{ asset('front/assets/img/p-food.png') }}"
-                                                            alt=""
+                                                        <img src="{{ asset('front/assets/img/p-food.png') }}" alt=""
                                                             class="img-w img-fluid  my-auto align-self-center">
                                                         <div class="card-body mt-2">
                                                             <div class="row">

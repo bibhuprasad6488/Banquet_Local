@@ -52,7 +52,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#ff5b61;">
     <main style="background-color:#ff5b61;" class="h-100">
 
         <div class="container  h-100">
@@ -194,8 +194,6 @@
                         icon: 'warning',
                         text: 'Kindly fill all the fields, Thank you!',
                         button: "Ok"
-                    }).then(function() {
-                        window.location.reload();
                     });
                     return false;
 
