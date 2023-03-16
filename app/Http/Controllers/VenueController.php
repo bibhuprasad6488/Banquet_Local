@@ -10,7 +10,6 @@ use App\Models\Venuetype;
 use App\Models\Amenity;
 use App\Models\VenueImage;
 use App\Libraries\CustomData;
-
 use Auth;
 
 class VenueController extends Controller
@@ -67,19 +66,31 @@ class VenueController extends Controller
             try {
                 $save = new Venue($data);
                 $venueSave = $save->save();
+                $imagearray = [];
                 if ($venueSave) {
                     if ($request->hasFile('image')) {
-                    foreach ($request->file('image') as $img) {
-                        $file=$img;
-                        $extention=$file->getClientOriginalExtension();
-                        $filename=time().rand().'.'.$extention;
-                        $file->move(public_path('/storage/images/venues'),$filename);
-                        $venueimg = VenueImage::create(['venue_id' => $save->id, 'user_id'=> $save->user_id ,'image' => $filename]);
-                       $venueimg->save();
+                        foreach ($request->file('image') as $img) {
+                            $file = $img;
+                            $extention = $file->getClientOriginalExtension();
+                            $filename = time() . rand() . '.' . $extention;
+                            $file->move(public_path('/storage/images/venues'), $filename);
+                            array_push(
+                                $imagearray,
+                                array(
+                                    'venue_id' => $save->id,
+                                    'user_id' => $save->user_id,
+                                    'image' => $filename,
+                                    'created_at' => now(),
+                                    'updated_at' => now()
+                                )
+                            );
+                        }
                     }
-                    }
+                    $venueimgSave = VenueImage::insert($imagearray);
                 }
-                return redirect()->back()->with('success', 'Venue successfully saved.');
+                if ($venueimgSave) {
+                    return redirect()->back()->with('success', 'Venue successfully saved.');
+                }
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', $e->getMessage());
             }
@@ -106,7 +117,7 @@ class VenueController extends Controller
     public function edit($id)
     {
         $venue = Venue::where('id', $id)->with('venueimage')->first();
-         // dd($venue);
+        // dd($venue);
         $packages = Package::where('status', 1)->orderBy('id', 'DESC')->get();
         $venueTypes = Venuetype::orderBy('id', 'DESC')->where('status', 1)->get();
         $amenities = Amenity::where('status', 1)->orderBy('id', 'DESC')->get();
@@ -139,20 +150,32 @@ class VenueController extends Controller
         try {
             $Updatevenues = Venue::where('id', $id)->first();
             $Updatevenues->update($data);
+            $imagearr = [];
             if ($Updatevenues) {
                 if ($request->hasFile('venue_image')) {
                     foreach ($request->file('venue_image') as $img) {
-                        $file=$img;
-                        $extention=$file->getClientOriginalExtension();
-                        $filename=time().rand().'.'.$extention;
-                        $file->move(public_path('/storage/images/venues'),$filename);
-                        $venueimg = VenueImage::create([ 'user_id' => $Updatevenues->user_id, 'venue_id' => $Updatevenues->id, 'image' => $filename]);
-                        $venueimg->save();
+                        $file = $img;
+                        $extention = $file->getClientOriginalExtension();
+                        $filename = time() . rand() . '.' . $extention;
+                        $file->move(public_path('/storage/images/venues'), $filename);
+
+                        array_push(
+                            $imagearr,
+                            array(
+                                'venue_id' => $Updatevenues->id,
+                                'user_id' => $Updatevenues->user_id,
+                                'image' => $filename,
+                                'created_at' => now(),
+                                'updated_at' => now()
+                            )
+                        );
                     }
                 }
+                $imgSave = VenueImage::insert($imagearr);
             }
-
-            return redirect()->back()->with('success', 'Venue successfully updated.');
+            if ($imgSave) {
+                return redirect()->back()->with('success', 'Venue successfully updated.');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -167,16 +190,16 @@ class VenueController extends Controller
     public function destroy($id)
     {
         $venue =  Venue::find($id);
-        $venue_img_dlt = VenueImage::where('venue_id',$venue->id)->get();
-       foreach ($venue_img_dlt as $venue_img){  
-        $venueImage = public_path("/storage/images/venues/$venue_img->image"); // get previous image from folder
-        if ($venueImage) { // unlink or remove previous image from folder
-            $isDel = unlink($venueImage);
-            if($isDel){
-                $venue_img->delete();
+        $venue_img_dlt = VenueImage::where('venue_id', $venue->id)->get();
+        foreach ($venue_img_dlt as $venue_img) {
+            $venueImage = public_path("/storage/images/venues/$venue_img->image"); // get previous image from folder
+            if ($venueImage) { // unlink or remove previous image from folder
+                $isDel = unlink($venueImage);
+                if ($isDel) {
+                    $venue_img->delete();
+                }
             }
         }
-       }
         if ($venue->delete()) {
             return redirect()->back()->with('success', 'Venue deleted.');
         } else {
@@ -221,11 +244,11 @@ class VenueController extends Controller
     public function deleteImages(Request $request)
     {
         $dataId = $request->dataId;
-        $venue_img_dlt = VenueImage::where('id',$dataId)->first();
+        $venue_img_dlt = VenueImage::where('id', $dataId)->first();
         $venueImage = public_path("/storage/images/venues/$venue_img_dlt->image"); // get previous image from folder
-                if ($venueImage) { // unlink or remove previous image from folder
-                    unlink($venueImage);
-                }
+        if ($venueImage) { // unlink or remove previous image from folder
+            unlink($venueImage);
+        }
         if ($venue_img_dlt->delete()) {
             return redirect()->back()->with('success', 'Venue Image Deleted');
         } else {

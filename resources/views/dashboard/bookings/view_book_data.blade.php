@@ -170,8 +170,7 @@
                                             @endforeach
                                         </select>
                                         <div class="input-group-append">
-                                            <button class="btn btn-success" style="background-color: #005121;"
-                                                type="submit">ADD</button>
+                                            <button class="btn btn-primary" type="submit">ADD</button>
                                         </div>
                                     </div>
                                 </form>
