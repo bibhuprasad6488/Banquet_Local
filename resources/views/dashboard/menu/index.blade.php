@@ -42,6 +42,7 @@
                                 </div>
                             @endif
                             <div class="table-responsive">
+                                {{-- <input type="text" value="{{ $total }}"> --}}
                                 <table class="datatable table table-stripped">
                                     <thead>
                                         <tr>
@@ -58,8 +59,16 @@
                                     </thead>
                                     <tbody>
                                         @if (!empty($datas))
+                                            @php
+                                                $total = 0;
+                                            @endphp
                                             @foreach ($datas as $key => $val)
+                                                @php
+                                                    $total += $val->price ?? '';
+                                                    // dd($total);
+                                                @endphp
                                                 <tr>
+                                                    {{-- <td>{{ $total }}</td> --}}
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $val->name }}</td>
                                                     <td>
@@ -72,9 +81,9 @@
                                                     </td>
                                                     <td>{{ $val->category->category_name }}</td>
                                                     <td>
-                                                    	@if($val->cuisine_id !='')
-                                                    		{{$val->category->cuisines_id[$val->cuisine_id]}}
-                                                    	@endif
+                                                        @if ($val->cuisine_id != '')
+                                                            {{ $val->category->cuisines_id[$val->cuisine_id] }}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         @if (!empty($val->image))
@@ -82,7 +91,7 @@
                                                                 target="_blank">
                                                                 <img class="avatar-img "
                                                                     src="/storage/images/items/{{ $val->image }}"
-                                                                    alt="{{ $val->name }}" height="50px" width="50%" 
+                                                                    alt="{{ $val->name }}" height="50px" width="50%"
                                                                     title="{{ $val->name }}"></a>
                                                         @endif
                                                     </td>
@@ -101,7 +110,7 @@
                                                             @can('items.write')
                                                                 <a href="{{ route('menu.edit', $val->id) }}"
                                                                     class="btn btn-sm bg-success-light mr-2 text-left">
-                                                                  <i class="fa fa-pencil-square-o text-success"></i>
+                                                                    <i class="fa fa-pencil-square-o text-success"></i>
                                                                 </a>
                                                             @endcan
                                                             @can('items.delete')
@@ -124,6 +133,7 @@
                                                 <td>-- No Records Found --</td>
                                             </tr>
                                         @endif
+                                        <input type="hidden" name="" value="{{ $total }}" id="">
                                     </tbody>
                                 </table>
                             </div>
